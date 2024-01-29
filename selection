@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+void display(int arr[], int n) {
+    printf("Elements: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+void selectionSort(int* A, int n){
+    int temp;
+    int min_index;
+    for(int i=0; i<n-1;i++){
+        min_index = i;
+        for(int j=i+1; j<n;j++){
+            if(A[j]<A[min_index]){
+            min_index = j;
+            }
+        }
+        temp = A[min_index];
+        A[min_index] = A[i];
+        A[i] = temp;
+    }
+}
+
+int main() {
+    int choice, n;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    do {
+        printf("\nMenu:\n");
+        printf("1. Display Elements\n");
+        printf("2. Sort using Selection Sort\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                display(arr, n);
+                break;
+            case 2:
+                selectionSort(arr, n);
+                printf("Array sorted using Selection Sort.\n");
+                break;
+            case 3:
+                printf("Exiting the program. Goodbye!\n");
+                break;
+            default:
+                printf("Invalid choice. Please enter a valid option.\n");
+        }
+
+    } while (choice != 3);
+
+    return 0;
+}
