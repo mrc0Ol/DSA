@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+int digit_extraction(int key)
+{
+    int first_digit = key % 10000000 / 1000000;
+    int fourth_digit = key % 1000 / 100;
+
+    printf("%d key would be hashed at location %d %d\n", key, first_digit, fourth_digit);
+}
+
+int main()
+{
+    int choice, number;
+
+    do
+    {
+        printf("\nMenu:\n");
+        printf("1. Digit Extraction and Hashing\n");
+        printf("2. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            // Input a number from the user
+            printf("Enter a number: ");
+            scanf("%d", &number);
+
+            // Call the digit extraction function
+            digit_extraction(number);
+            break;
+
+        case 2:
+            printf("Exiting the program.\n");
+            break;
+
+        default:
+            printf("Invalid choice. Please enter a valid option.\n");
+            break;
+        }
+    } while (choice != 2);
+
+    return 0;
+}
