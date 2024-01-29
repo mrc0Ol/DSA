@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+#define TABLE_SIZE 10
+
+// Hash function using modulo division
+int hashFunction(int key) {
+    return key % TABLE_SIZE;
+}
+
+// Function to insert a key into the hash table
+void insertKey(int hashTable[], int key) {
+    int index = hashFunction(key);
+    hashTable[index] = key;
+}
+
+// Function to search for a key in the hash table
+int searchKey(int hashTable[], int key) {
+    int index = hashFunction(key);
+
+    if (hashTable[index] == key)
+        return index; // Key found at this index
+    else
+        return -1; // Key not found
+}
+
+// Function to print the hash table
+void printHashTable(int hashTable[]) {
+    printf("Hash Table:\n");
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        printf("[%d]: %d\n", i, hashTable[i]);
+    }
+}
+
+int main() {
+    int hashTable[TABLE_SIZE] = {0}; // Initialize the hash table with zeros
+
+    // Insert keys into the hash table
+    insertKey(hashTable, 25);
+    insertKey(hashTable, 12);
+    insertKey(hashTable, 35);
+    insertKey(hashTable, 18);
+
+    // Print the hash table
+    printHashTable(hashTable);
+
+    // Search for a key
+    int searchKeyResult = searchKey(hashTable, 35);
+    if (searchKeyResult != -1)
+        printf("\nKey 35 found at index %d\n", searchKeyResult);
+    else
+        printf("\nKey 35 not found in the hash table\n");
+
+    return 0;
+}
