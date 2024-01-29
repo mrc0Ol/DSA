@@ -1,0 +1,83 @@
+#include <stdio.h>
+
+// Function to perform Shell Sort
+void shellSort(int *A, int n)
+{
+    int temp;
+    int gap;
+    for (gap = n / 2; gap >= 1; gap /= 2)
+    {
+        for (int j = gap; j < n; j++)
+        {
+            for (int i = j - gap; i >= 0; i -= gap)
+            {
+                if (A[i + gap] > A[i])
+                {
+                    break;
+                }
+                else
+                {
+                    temp = A[i + gap];
+                    A[i + gap] = A[i];
+                    A[i] = temp;
+                }
+            }
+        }
+    }
+}
+
+// Function to print an array
+void printArray(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int choice;
+    int arr[100], n;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter the elements:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    do {
+        printf("\nMenu:\n");
+        printf("1. Sort the array using Shell Sort\n");
+        printf("2. Print the sorted array\n");
+        printf("3. Exit\n");
+
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                // Sorting the array using Shell Sort
+                shellSort(arr, n);
+                printf("Array sorted using Shell Sort.\n");
+                break;
+
+            case 2:
+                // Printing the sorted array
+                printf("Sorted array: ");
+                printArray(arr, n);
+                break;
+
+            case 3:
+                // Exiting the program
+                printf("Exiting the program. Goodbye!\n");
+                break;
+
+            default:
+                printf("Invalid choice. Please enter a valid option.\n");
+        }
+
+    } while (choice != 3);
+
+    return 0;
+}
